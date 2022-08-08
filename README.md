@@ -1,5 +1,5 @@
 # Topic Modeling for GES-DISC publications
-A comparison and evaluation of topic models on the titles of publications linked to the GES-DISC dataset.
+Topic Modeling: Using an Unsupervised Learning Method to Perform Classification of Publications.pptx
 
 ### Overview: 
 We have a predefined list of topics that we would like to tag our documents with. For example, given thousands of documents, we want to be able to classify each of them with topics they belong to, such as whether they're about weather, earthquakes, vegetation, etc. Classification is not preferred because it requires a lot of hand labeling. K-means clustering creates a 1:1 mapping between topic and document, but we want documents to be able to contain serveral topics, so topic modeling is a powerful method to solve this problem. We approach our problem by generating topics using topic modeling based on our dataset, and then using those generated topics and matching htem to the predefined topics.
