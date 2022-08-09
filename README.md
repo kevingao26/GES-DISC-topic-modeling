@@ -4,9 +4,12 @@ Topic Modeling: Using an Unsupervised Learning Method to Perform Classification 
 ### Overview: 
 We have a predefined list of topics that we would like to tag our documents with. For example, given thousands of documents, we want to be able to classify each of them with topics they belong to, such as whether they're about weather, earthquakes, vegetation, etc. Classification is not preferred because it requires a lot of hand labeling. K-means clustering creates a 1:1 mapping between topic and document, but we want documents to be able to contain serveral topics, so topic modeling is a powerful method to solve this problem. We approach our problem by generating topics using topic modeling based on our dataset, and then using those generated topics and matching htem to the predefined topics.
 
+-----
 
 ### Step 1: octis_training3.ipynb
 The first part is to generate topic models, but what model do we want to use? There are quite a few good models out there, so we take LDA, one of the most known traditional topic models, and a few models that combine LDA with deep learning. To create a fair comparison, we first optimize each model to allow it to have the best performance possible.
+
+-----
 
 ### Step 2: octis_evaluation.ipynb
 Once we have our optimized models, we compare them. How? We use coherence scores, which are automated ways of scoring topic models that are supposed to mimic what a human evaluator would do. To read further about this, here are some good papers:
@@ -19,6 +22,7 @@ Here are also some good papers on topic model evaluation and more specifically t
 
 <img width="914" alt="image" src="https://user-images.githubusercontent.com/70555752/183775573-60c9cd6c-054e-46ae-9f14-618438b1d869.png">
 
+-----
 
 ### Step 3: octis_visualizations.ipynb
 Using our best model and output, we now have a list of words for each topic. We explore some questions:
@@ -34,6 +38,7 @@ Using our best model and output, we now have a list of words for each topic. We 
 
 <img width="411" alt="image" src="https://user-images.githubusercontent.com/70555752/183775553-eaf8e53e-0100-41d7-9cd4-79e92b3cc0c5.png">
 
+-----
 
 ### Step 4: octis_comparisons.ipynb
 We have finished generating topics, and now perform the mapping of these topics to our predefined list of topics. Since our problem uses predefined list of topics, we not only have to consider how our final output performed by itself, but also how it compares against our predefined list of topics (and we may end up choosing a model with a lower coherence score, if it fits our predefined list better). There are many different things to consider when tackling this problem.
@@ -47,6 +52,8 @@ Based on what we see, there are a few things we could tweak. For example, in the
 <img width="505" alt="image" src="https://user-images.githubusercontent.com/70555752/183775161-bb778d46-387f-4c28-b73d-4f7d639e6525.png">
 
 The similarity function can also be changed. We use cosine similarity, and we end up with a lot of similarity values that are low, but not low enough. For example, two unrelated words might consistently produce a similarity of 0.2, but they should just be 0. To take care of this, we could use something like a softmax function. In the figure above, which is demonstrative only and does not represent true similarity values, we use a simple linear function to transform our similarity outputs, and we see that when we compare eruption to 3 words, the values are better after our transformation than before (we want it to be spread out).
+
+-----
 
 ### Conclusion
 
