@@ -10,8 +10,35 @@ We have a predefined list of topics that we would like to tag our documents with
 The first part is to generate topic models, but what model do we want to use? There are quite a few good models out there, so we take LDA, one of the most known traditional topic models, and a few models that combine LDA with deep learning. To create a fair comparison, we first optimize each model to allow it to have the best performance possible.
 
 ```
-test
+# CTM model
+model = CTM(inference_type='zeroshot', 
+            bert_model="bert-base-nli-mean-tokens",
+            num_topics=45)
+# evaluation metric to train on
+npmi = Coherence(texts=dataset.get_corpus(), topk=topK, measure='c_v')
+div = TopicDiversity(topk=topK)
+
+# hyperparams
+search_space = {"num_layers": Categorical({1, 2, 3}), 
+                "num_neurons": Categorical({100, 200, 300}),
+                "activation": Categorical({'sigmoid', 'relu', 'softplus'}), 
+                "dropout": Real(0.0, 0.95)
+}
+
+# optimization
+optimization_runs=100
+model_runs=6
+
+optimizer=Optimizer()
+optimization_result = optimizer.optimize(
+    model, dataset, npmi, search_space, number_of_call=optimization_runs, 
+    model_runs=model_runs, save_models=True, 
+    extra_metrics=[div], # to keep track of other metrics
+)
 ```
+
+<img width="403" alt="image" src="https://user-images.githubusercontent.com/70555752/183776754-00db0ae7-22e3-4ea2-b40c-b760da68a6cc.png">
+
 
 -----
 
