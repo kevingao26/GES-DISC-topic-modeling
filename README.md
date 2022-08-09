@@ -48,5 +48,8 @@ Based on what we see, there are a few things we could tweak. For example, in the
 
 The similarity function can also be changed. We use cosine similarity, and we end up with a lot of similarity values that are low, but not low enough. For example, two unrelated words might consistently produce a similarity of 0.2, but they should just be 0. To take care of this, we could use something like a softmax function. In the figure above, which is demonstrative only and does not represent true similarity values, we use a simple linear function to transform our similarity outputs, and we see that when we compare eruption to 3 words, the values are better after our transformation than before (we want it to be spread out).
 
+### Conclusion
+
+Thus, we can generate topics using topic modeling and map them to topics in the spreadsheet from step 4 (and decide how to practically conduct the mapping at the end). This can be used to take in an unlabeled list of titles and tag them with topics that we define.
 
 
